@@ -18,94 +18,39 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-white py-4 px-4 md:px-8 lg:px-16 flex items-center justify-between shadow-sm sticky top-0 z-50">
-      <div className="flex items-center">
-        <Link to="/">
-          <img src={logo} alt="Jayess Builders Logo" className="h-12 w-auto" />
+    <header className="site-header">
+      <nav className="nav-bar" aria-label="Main navigation">
+        <Link to="/" className="brand-link" aria-label="Jayess Builders home" onClick={() => setIsMenuOpen(false)}>
+          <img src={logo} alt="" className="brand-logo h-12 w-auto"/>
+          {/* <span className="brand-name">JAYESS <span>BUILDERS</span></span> */}
         </Link>
-      </div>
-      
-      {/* Desktop Navigation */}
-      <div className="hidden sm:flex gap-6 text-brown-700 text-lg pr-2 font-semibold">
-        <Link 
-          to="/" 
-          className={`focus:outline-none ${isActive('/') ? 'border-b-2 border-brown-700' : ''}`}
+        <div className="desktop-nav">
+          <Link to="/" aria-current={isActive('/') ? 'page' : undefined}>Home</Link>
+          <Link to="/about" aria-current={isActive('/about') ? 'page' : undefined}>About us</Link>
+          <Link to="/testimonials" aria-current={isActive('/testimonials') ? 'page' : undefined}>Testimonials</Link>
+          <Link to="/contact" aria-current={isActive('/contact') ? 'page' : undefined}>Contact</Link>
+        </div>
+        <Link to="/contact" className="nav-cta">Let’s talk <span aria-hidden="true">↗</span></Link>
+        <button
+          type="button"
+          className="menu-toggle"
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
         >
-          Home
-        </Link>
-        <Link 
-          to="/about" 
-          className={`focus:outline-none ${isActive('/about') ? 'border-b-2 border-brown-700' : ''}`}
-        >
-          About Us
-        </Link>
-        <Link 
-          to="/testimonials" 
-          className={`focus:outline-none ${isActive('/testimonials') ? 'border-b-2 border-brown-700' : ''}`}
-        >
-          Testimonials
-        </Link>
-        <Link 
-          to="/contact" 
-          className={`focus:outline-none ${isActive('/contact') ? 'border-b-2 border-brown-700' : ''}`}
-        >
-          Contact Us
-        </Link>
-      </div>
-
-      {/* Mobile Menu Button */}
-      <div className="sm:hidden">
-        <button onClick={toggleMenu} className="p-2 cursor-pointer">
-          <img src={menu} alt="Menu" className="h-6 w-6" />
+          <img src={menu} alt="" />
         </button>
-      </div>
-
-      {/* Mobile Navigation Menu */}
+      </nav>
       {isMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white shadow-lg sm:hidden z-50">
-          <div className="flex flex-col py-4">
-          <Link 
-            to="/" 
-            className={`px-4 py-2 text-brown-700 font-semibold transition-colors duration-200 ${
-              isActive('/') ? 'bg-[#f3ebe3]' : 'hover:bg-[#e6dbce]'
-            }`}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Home
-          </Link>
-          <Link 
-            to="/about" 
-            className={`px-4 py-2 text-brown-700 font-semibold transition-colors duration-200 ${
-              isActive('/about') ? 'bg-[#f3ebe3]' : 'hover:bg-[#e6dbce]'
-            }`}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            About Us
-          </Link>
-          <Link 
-            to="/testimonials" 
-            className={`px-4 py-2 text-brown-700 font-semibold transition-colors duration-200 ${
-              isActive('/testimonials') ? 'bg-[#f3ebe3]' : 'hover:bg-[#e6dbce]'
-            }`}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Testimonials
-          </Link>
-          <Link 
-            to="/contact" 
-            className={`px-4 py-2 text-brown-700 font-semibold transition-colors duration-200 ${
-              isActive('/contact') ? 'bg-[#f3ebe3]' : 'hover:bg-[#e6dbce]'
-            }`}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Contact Us
-          </Link>
-
-          </div>
+        <div className="mobile-nav" id="mobile-navigation">
+          <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+          <Link to="/about" onClick={() => setIsMenuOpen(false)}>About us</Link>
+          <Link to="/testimonials" onClick={() => setIsMenuOpen(false)}>Testimonials</Link>
+          <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
         </div>
       )}
-
-    </nav>
+    </header>
   );
 }
 

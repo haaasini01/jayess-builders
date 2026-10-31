@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import HomeSection from './components/HomeSection';
 import OwnerDetails from './components/OwnerDetails';
 import ProjectsStats from './components/ProjectsStats';
@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ClientTestimonials from './components/ClientTestimonials';
 import GetInTouch from './components/GetInTouch';
+import ScrollReveal from './components/ScrollReveal';
 
 function Home() {
   return (
@@ -31,8 +32,8 @@ function ContactPage() {
 
 function ScrollToTop() {
   const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [pathname]);
   return null;
 }
@@ -42,8 +43,9 @@ function App() {
     <Router>
       <ScrollToTop />
       <Navbar />
-      <div className="min-h-screen bg-white font-sans flex flex-col px-4 md:px-8 lg:px-16">
-        <main className="flex-1">
+      <div className="site-shell">
+        <main className="site-main">
+          <ScrollReveal />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<Achievements />} />

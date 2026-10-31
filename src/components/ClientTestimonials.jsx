@@ -1,47 +1,44 @@
-import React from 'react';
-
 const testimonials = [
   {
     name: 'Sunil Kumar',
     project: 'Shoba Villa, Hyderabad',
-    text: "Choosing a home at Shoba Villa has been a great decision. The environment strikes the right balance between elegance and practicality. From premium fittings to easy access to shopping and schools, everything is within reach. The professionalism of the management team only adds to the satisfaction."
+    text: 'Choosing a home at Shoba Villa has been a great decision. The environment strikes the right balance between elegance and practicality. From premium fittings to easy access to shopping and schools, everything is within reach. The professionalism of the management team only adds to the satisfaction.',
   },
   {
     name: 'Anil Kumar',
     project: 'Sri Ramlu Nilayam, Hyderabad',
-    text: "Living at Sri Ramlu Nilayam in Manikonda has truly elevated our lifestyle. The location is central, making our daily commute and errands incredibly convenient. The apartment is spacious, well-ventilated, and thoughtfully crafted. For families like ours seeking both comfort and community, Sri Ramlu Nilayam is an excellent choice."
+    text: 'Living at Sri Ramlu Nilayam in Manikonda has truly elevated our lifestyle. The location is central, making our daily commute and errands incredibly convenient. The apartment is spacious, well-ventilated, and thoughtfully crafted. For families like ours seeking both comfort and community, Sri Ramlu Nilayam is an excellent choice.',
   },
   {
     name: 'Shravan',
     project: 'Renuka Nilayam, Hyderabad',
-    text: "Renuka Nilayam has been the peaceful retreat I was hoping for. Nestled amidst greenery, it offers a calming atmosphere that's perfect after a long day. The thoughtful layout and vibrant community makes it more than just a house, it truly feels like home in the heart of Hyderabad."
-  }
+    text: 'Renuka Nilayam has been the peaceful retreat I was hoping for. Nestled amidst greenery, it offers a calming atmosphere that’s perfect after a long day. The thoughtful layout and vibrant community make it more than just a house—it truly feels like home in the heart of Hyderabad.',
+  },
 ];
 
-
-const ClientTestimonials = () => (
-  <section className="py-12 max-w-6xl mx-auto px-4">
-    <h2 className="text-3xl font-extrabold mb-8 bg-gradient-to-b from-[#6F5B4A] to-[#A88A70] bg-clip-text text-transparent text-center">
-      Client Testimonials
-    </h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {testimonials.map((t, idx) => (
-        <div
-          key={idx}
-          className={
-            "bg-brown-100 border border-brown-200 rounded-lg shadow-lg p-8 flex flex-col justify-between min-h-[340px]" +
-            (idx === 2 ? ' md:col-start-1 md:col-span-1 lg:col-auto' : '')
-          }
-        >
-          <p className="mb-6 text-brown-800 text-base">{t.text}</p>
-          <div>
-            <div className="font-bold text-xl text-brown-800 mb-1">{t.name}</div>
-            <div className="text-brown-700 text-base">{t.project}</div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-);
+function ClientTestimonials() {
+  return (
+    <section className="testimonials-page">
+      <div className="testimonials-heading" data-reveal>
+        <p className="eyebrow">Good homes. Good people.</p>
+        <h1>Don’t just take<br /><span>our word for it.</span></h1>
+        <p>The best measure of our work is how it feels to live there.</p>
+      </div>
+      <div className="testimonial-grid">
+        {testimonials.map((testimonial, index) => (
+          <article className={`testimonial-card testimonial-card-${index + 1}`} key={testimonial.name} data-reveal>
+            <div className="quote-mark" aria-hidden="true">“</div>
+            <div className="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p className="testimonial-copy">{testimonial.text}</p>
+            <div className="testimonial-person">
+              <span className="testimonial-initial" aria-hidden="true">{testimonial.name.charAt(0)}</span>
+              <div><h2>{testimonial.name}</h2><span>{testimonial.project}</span></div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export default ClientTestimonials;

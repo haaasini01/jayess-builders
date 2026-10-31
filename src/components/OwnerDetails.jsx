@@ -5,17 +5,20 @@ function OwnerDetails() {
   return (
     <>
     
-      <div className="border-t border-brown-200 w-full mb-8 mt-4" />
-      <section className="bg-white py-8 px-4 flex flex-col items-center text-center">
-        <img
-          src={nana2}
-          alt="Owner"
-          className="w-36 h-36 rounded-full mb-4 border-4 border-brown-300 object-cover shadow-md"
-        />
-        <h2 className="text-2xl font-bold text-brown-800 mb-1">Mr. R. Surya Prakash</h2>
-        <p className="text-brown-800 mb-1">Phone: <a href="tel:+919515496226" className="underline">+91 95154 96226</a></p>
-        <p className="text-brown-800 mb-2">Email: <a href="mailto:jayessbuilders1@gmail.com" className="underline">jayessbuilders1@gmail.com</a></p>
-        <p className="text-brown-700 max-w-md">With over 15 years of experience, Mr. R. Surya Prakash leads Jayess Builders with a passion for quality and a vision for community impact.</p>
+      <section className="founder-section" data-reveal>
+        <div className="founder-photo-wrap">
+          <img src={nana2} alt="Mr. R. Surya Prakash, founder of Jayess Builders" className="founder-photo" loading="lazy" />
+          <span className="founder-photo-caption">The person behind the promise</span>
+        </div>
+        <div className="founder-copy">
+          <p className="eyebrow">A personal commitment</p>
+          <h2>Built on trust.<br /><span>Led with care.</span></h2>
+          <p>With more than 15 years in construction, Mr. R. Surya Prakash leads Jayess Builders with a hands-on approach and a belief that every home should be made with care.</p>
+          <div className="founder-contact">
+            <div><span>Speak with our founder</span><a href="tel:+919515496226">+91 95154 96226</a></div>
+            <a className="founder-email" href="mailto:jayessbuilders1@gmail.com" aria-label="Email Jayess Builders">↗</a>
+          </div>
+        </div>
       </section>
     </>
   );

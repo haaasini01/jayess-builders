@@ -5,7 +5,7 @@ import { z } from 'zod';
 const schema = z.object({
   name: z.string().min(1, 'Name is required'),
   district: z.string().min(1, 'Interested area is required'),
-  phone: z.string().regex(/^[\+\d\s\-\(\)\.]{7,30}$/, 'Phone number must be 6-30 characters (country codes, spaces, dashes, parentheses, and dots allowed)'),
+  phone: z.string().regex(/^[+\d\s().-]{7,30}$/, 'Phone number must be 6-30 characters (country codes, spaces, dashes, parentheses, and dots allowed)'),
   email: z.string().email('Invalid email address'),
   propertyType: z.string().optional(),
 });
@@ -113,79 +113,47 @@ function GetInTouch() {
   };
 
   return (
-    <section className="bg-white py-10 px-4 md:px-16 flex flex-col md:flex-row items-center justify-center gap-20 mt-4">
-      <div className="flex-1 flex flex-col items-center">
-        <img
-          src={telanganaImg}
-          alt="Telangana Districts"
-          className="w-full max-w-md rounded-lg shadow-lg border-4 border-brown-200 mb-6 md:mb-0"
-        />
+    <section className="contact-page">
+      <div className="contact-heading" data-reveal>
+        <p className="eyebrow">We’re here to help</p>
+        <h1>Tell us what<br /><span>you’re dreaming of.</span></h1>
+        <p>Share a little about what you’re looking for. Our team will be in touch to help you take the next step.</p>
       </div>
-      <div className="flex-1 flex flex-col">
-        <h2 className="bg-gradient-to-b from-[#6F5B4A] to-[#A88A70] bg-clip-text text-transparent text-3xl font-extrabold mb-6 text-center">Get In Touch With Us</h2>
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white border-4 border-brown-200 rounded-xl p-8 flex flex-col gap-4 min-w-[340px] max-w-lg shadow-lg"
-        >
-          <div className="flex flex-col md:flex-row gap-4">
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Full Name..."
-              className="flex-1 p-3 border border-brown-200 rounded focus:outline-none focus:ring-2 focus:ring-brown-200 bg-brown-100 text-brown-800"
-              required
-            />
-            <input
-              type="text"
-              name="district"
-              value={form.district}
-              onChange={handleChange}
-              placeholder="Interested Area..."
-              className="flex-1 p-3 border border-brown-200 rounded focus:outline-none focus:ring-2 focus:ring-brown-200 bg-brown-100 text-brown-800"
-              required
-            />
+      <div className="contact-layout" data-reveal>
+        <aside className="contact-location">
+          <img src={telanganaImg} alt="Map of Telangana" />
+          <div className="location-overlay">
+            <span className="location-pin" aria-hidden="true">●</span>
+            <div><span>PROUDLY ROOTED IN</span><strong>Hyderabad, Telangana</strong></div>
           </div>
-          <div className="flex flex-col md:flex-row gap-4">
-            <input
-              type="tel"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              placeholder="Phone Number..."
-              className="flex-1 p-3 border border-brown-200 rounded focus:outline-none focus:ring-2 focus:ring-brown-200 bg-brown-100 text-brown-800"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="Email Address..."
-              className="flex-1 p-3 border border-brown-200 rounded focus:outline-none focus:ring-2 focus:ring-brown-200 bg-brown-100 text-brown-800"
-              required
-            />
+          <div className="contact-direct">
+            <span>Prefer a direct conversation?</span>
+            <a href="tel:+919515496226">+91 95154 96226 <span aria-hidden="true">↗</span></a>
           </div>
-          <textarea
-            name="propertyType"
-            value={form.propertyType}
-            onChange={handleChange}
-            placeholder="Message..."
-            rows={2}
-            className="p-3 border border-brown-200 rounded focus:outline-none focus:ring-2 focus:ring-brown-200 bg-brown-100 text-brown-800 resize-none min-h-[48px]"
-          />
-          <button
-            type="submit"
-            disabled={isLoading}
-            className={`bg-[#8d6748] text-white font-bold py-3 rounded mt-6 transition shadow-lg ${
-              isLoading 
-                ? 'opacity-50 cursor-not-allowed' 
-                : 'hover:bg-[#6b4f2c]'
-            }`}
-          >
-            {isLoading ? 'Loading...' : 'Contact Us'}
+        </aside>
+        <form onSubmit={handleSubmit} className="contact-form">
+          <div className="form-heading"><span>01 — YOUR DETAILS</span><h2>Let’s get to know you.</h2></div>
+          <div className="form-grid">
+            <label>Full name
+              <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Your name" autoComplete="name" required />
+            </label>
+            <label>Interested area
+              <input type="text" name="district" value={form.district} onChange={handleChange} placeholder="e.g. Manikonda" required />
+            </label>
+            <label>Phone number
+              <input type="tel" name="phone" value={form.phone} onChange={handleChange} placeholder="+91" autoComplete="tel" required />
+            </label>
+            <label>Email address
+              <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="you@example.com" autoComplete="email" required />
+            </label>
+            <label className="form-message">What would you like to discuss?
+              <textarea name="propertyType" value={form.propertyType} onChange={handleChange} placeholder="Tell us a little about what you have in mind..." rows={4} />
+            </label>
+          </div>
+          <button type="submit" disabled={isLoading} className="button button-dark form-submit">
+            {isLoading ? 'Sending your message...' : 'Send an enquiry'} <span aria-hidden="true">↗</span>
           </button>
+          <p className="form-note">Your details are only used to respond to your enquiry.</p>
         </form>
       </div>
     </section>
